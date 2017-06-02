@@ -13,6 +13,19 @@ require('./app/config/passport')(passport);
 mongoose.connect(process.env.MONGO_URI);
 mongoose.Promise = global.Promise;
 
+
+//YELP TOKEN//////////
+const yelp = require('yelp-fusion');
+//console.log(process.env.YELP_KEY); 
+//console.log(process.env.YELP_SECRET); 
+const token = yelp.accessToken(process.env.YELP_KEY, process.env.YELP_SECRET).then(response => {
+  console.log(response.jsonBody.access_token);
+}).catch(e => {
+  console.log(e);
+});
+//////////////////////
+
+
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));
 app.use('/common', express.static(process.cwd() + '/app/common'));
