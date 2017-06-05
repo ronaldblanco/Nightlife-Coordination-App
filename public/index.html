@@ -22,17 +22,24 @@
 			<p class="clementine-text">Clementine.js</p>
 		</div>
 	
-		<div class="container">
+		<!--<div class="container">
 			<p>You have clicked the button <span id="click-nbr"></span> times.</p>
 			<br />
 			<div class="btn-container">
 				<button type="submit" class="btn btn-add">CLICK ME!</button>
 				<button class="btn btn-delete">RESET</button>
 			</div>
-		</div>
+		</div>-->
+		
+		<br><br>
+			Location:<input type="text" name="loca" id="loca"><br>
+			Term:<input type="text" name="term" id="term"><br>
+              <button type="submit" class="btn btn-add" id ="search">Search!</button>
+              <ul id="sResult">
+              	</ul>
 		
 		<script type="text/javascript" src="common/ajax-functions.js"></script>
-		<script type="text/javascript" src="controllers/clickController.client.js"></script>
+		<script type="text/javascript" src="controllers/publicController.client.js"></script>
 		<script type="text/javascript" src="controllers/userController.client.js"></script>
 	</body>
 
