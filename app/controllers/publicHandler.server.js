@@ -27,7 +27,8 @@ function PublicHandler () {
 					location: forSearch[0]
 				}).then(response => {
 					//console.log(response.jsonBody.businesses[0].name);
-					res.send(response);
+					req.session.mySearch = response.jsonBody;
+					res.send(response.jsonBody);
 				}).catch(e => {
 					console.log(e);
 				});
@@ -45,7 +46,8 @@ function PublicHandler () {
 				location: forSearch[0]
 			}).then(response => {
 				//console.log(response.jsonBody.businesses[0].name);
-				res.send(response);
+				req.session.mySearch = response.jsonBody;
+				res.send(response.jsonBody);
 			}).catch(e => {
 				console.log(e);
 			});
@@ -68,16 +70,11 @@ function PublicHandler () {
 		
 	};
 
-	/*this.resetClicks = function (req, res) {
-		Users
-			.findOneAndUpdate({ 'github.id': req.user.github.id }, { 'nbrClicks.clicks': 0 })
-			.exec(function (err, result) {
-					if (err) { throw err; }
-
-					res.json(result.nbrClicks);
-				}
-			);
-	};*/
+	this.getSearch = function (req, res) {
+		if(req.session.mySearch != undefined){
+			res.send(req.session.mySearch);
+		}else res.send({'businesses':[]});
+	};
 
 }
 

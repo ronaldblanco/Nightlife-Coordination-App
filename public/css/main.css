@@ -104,6 +104,12 @@ img {
 	display: block;
 }
 
+.miniimg {
+	width: 15%;
+	margin-left: 0%;
+	/*height: 15%*/
+}
+
 .clementine-text { /* Styling for the Clementine.js text */
 	padding: 0;
 	margin: -25px 0 0 0;
