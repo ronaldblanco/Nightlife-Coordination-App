@@ -2,32 +2,33 @@
 
 (function () {
 
-   var addButton = document.querySelector('.btn-add');
-   var deleteButton = document.querySelector('.btn-delete');
-   var clickNbr = document.querySelector('#click-nbr');
-   var apiUrl = appUrl + '/api/:id/clicks';
+   var location = document.querySelector('#loca');
+   var term = document.querySelector('#term');
+   var search = document.querySelector('#search');
+   var apiUrl = appUrl + '/api/:id/search';
 
-   function updateClickCount (data) {
-      var clicksObject = JSON.parse(data);
-      clickNbr.innerHTML = clicksObject.clicks;
+   function updateSearch (data) {
+      console.log(data);
+      //var clicksObject = JSON.parse(data);
+      //clickNbr.innerHTML = clicksObject.clicks;
    }
 
-   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount));
+   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateSearch));
 
-   addButton.addEventListener('click', function () {
+   search.addEventListener('click', function () {
 
-      ajaxFunctions.ajaxRequest('POST', apiUrl, function () {
-         ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount);
+      ajaxFunctions.ajaxRequest('POST', apiUrl+'/'+location.value+'_'+term.value, function () {
+         ajaxFunctions.ajaxRequest('GET', apiUrl, updateSearch);
       });
 
    }, false);
 
-   deleteButton.addEventListener('click', function () {
+   /*deleteButton.addEventListener('click', function () {
 
       ajaxFunctions.ajaxRequest('DELETE', apiUrl, function () {
          ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount);
       });
 
-   }, false);
+   }, false);*/
 
 })();

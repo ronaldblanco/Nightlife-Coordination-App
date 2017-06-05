@@ -15,14 +15,19 @@ mongoose.Promise = global.Promise;
 
 
 //YELP TOKEN//////////
-const yelp = require('yelp-fusion');
+//var yelpToken;
+/*const yelp = require('yelp-fusion');
+var token;
 //console.log(process.env.YELP_KEY); 
 //console.log(process.env.YELP_SECRET); 
-const token = yelp.accessToken(process.env.YELP_KEY, process.env.YELP_SECRET).then(response => {
-  console.log(response.jsonBody.access_token);
+var getToken = yelp.accessToken(process.env.YELP_KEY, process.env.YELP_SECRET).then(response => {
+	//token = JSON.parse(response.jsonBody);
+  //console.log(token);
+  console.log(response.jsonBody);
 }).catch(e => {
   console.log(e);
-});
+});*/
+//console.log(token);
 //////////////////////
 
 
@@ -39,7 +44,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-routes(app, passport);
+routes(app, passport/*, token*/);
 
 var port = process.env.PORT || 8080;
 app.listen(port,  function () {

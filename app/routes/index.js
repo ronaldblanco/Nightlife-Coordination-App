@@ -2,8 +2,9 @@
 
 var path = process.cwd();
 var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
+var PublicHandler = require(path + '/app/controllers/publicHandler.server.js');
 
-module.exports = function (app, passport) {
+module.exports = function (app, passport/*, token*/) {
 
 	function isLoggedIn (req, res, next) {
 		if (req.isAuthenticated()) {
@@ -12,8 +13,17 @@ module.exports = function (app, passport) {
 			res.redirect('/login');
 		}
 	}
+	
+	function notLoggedIn (req, res, next) {
+		//if (req.isAuthenticated()) {
+			return next();
+		//} else {
+			//res.redirect('/login');
+		//}
+	}
 
 	var clickHandler = new ClickHandler();
+	var publicHandler = new PublicHandler();
 
 	app.route('/')
 		.get(isLoggedIn, function (req, res) {
@@ -54,4 +64,12 @@ module.exports = function (app, passport) {
 		.get(isLoggedIn, clickHandler.getClicks)
 		.post(isLoggedIn, clickHandler.addClick)
 		.delete(isLoggedIn, clickHandler.resetClicks);
+		
+	app.route('/api/:id/gettoken')
+		.get(notLoggedIn, publicHandler.getToken)
+		//.get(notLoggedIn, publicHandler.search)
+		//.delete(isLoggedIn, clickHandler.resetClicks);
+		
+	app.route('/api/:id/search/*')
+		.get(notLoggedIn, publicHandler.search)
 };
