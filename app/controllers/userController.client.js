@@ -6,7 +6,7 @@
    var profileUsername = document.querySelector('#profile-username') || null;
    var profileRepos = document.querySelector('#profile-repos') || null;
    var displayName = document.querySelector('#display-name');
-   var sResult = document.querySelector('#sResult');
+   var sResult = document.querySelector('#sResultProfile');
    var apiUrl = appUrl + '/api/:id';
 
    function updateHtmlElement (data, element, userProperty) {

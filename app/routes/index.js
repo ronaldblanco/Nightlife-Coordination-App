@@ -70,6 +70,9 @@ module.exports = function (app, passport/*, token*/) {
 		//.get(notLoggedIn, publicHandler.search)
 		//.delete(isLoggedIn, clickHandler.resetClicks);
 		
+	app.route('/api/:id/getsavetoken')
+		.get(notLoggedIn, publicHandler.getSaveToken)
+		
 	app.route('/api/:id/search/*')
 		.get(notLoggedIn, publicHandler.search)
 		
