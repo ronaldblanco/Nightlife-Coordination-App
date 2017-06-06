@@ -10,6 +10,10 @@ var User = new Schema({
 		username: String,
       publicRepos: Number
 	},
+	iamgoing: {
+	    id: String,
+	    phone: String
+	},
    nbrClicks: {
       clicks: Number
    }

@@ -75,6 +75,44 @@ function PublicHandler () {
 			res.send(req.session.mySearch);
 		}else res.send({'businesses':[]});
 	};
+	
+	this.setIamgoing = function (req, res) {
+		//console.log(req.originalUrl.toString().split("/add/")[1]);
+		var idPhone = req.originalUrl.toString().split("/api/:id/searchiamgoing/")[1].split('_');
+		
+		Users
+			.findOneAndUpdate({ 'github.id': req.user.github.id }, { 'iamgoing.id':idPhone[0],'iamgoing.phone':idPhone[1] })
+			.exec(function (err, result) {
+					if (err) { throw err; }
+
+					res.json(result.iamgoing);
+				}
+			);
+			
+	};
+	
+	this.getIamgoing = function (req, res) {
+		Users
+			.findOne({ 'github.id': req.user.github.id }, { '_id': false })
+			.exec(function (err, result) {
+				if (err) { throw err; }
+				//console.log(result.iamgoing.phone);
+				//result.polls.push("hola");
+				//res.json(result.iamgoing);//Array
+				
+				const client = yelp.client(req.session.yelpToken.access_token);
+ 
+				client.phoneSearch({
+					phone:result.iamgoing.phone
+				}).then(response => {
+					console.log(response.jsonBody.businesses[0].name);
+					res.send(response.jsonBody);
+				}).catch(e => {
+					console.log(e);
+				});
+				
+			});
+	};
 
 }
 
