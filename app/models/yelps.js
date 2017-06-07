@@ -8,7 +8,9 @@ var Yelp = new Schema({
 		access_token: String,
 		token_type: String,
       expires_in: Number
-	}
+	},
+	expire_date: Date,
+	add_date: Date
 });
 
 module.exports = mongoose.model('Yelp', Yelp);

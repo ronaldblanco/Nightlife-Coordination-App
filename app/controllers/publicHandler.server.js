@@ -4,7 +4,12 @@ var Users = require('../models/users.js');
 var Yelp = require('../models/yelps.js');
 const yelp = require('yelp-fusion');
 var request = require('request');
-//var yelpToken;
+
+function addSeconds(seconds){
+    var date = new Date();
+    date.setSeconds(date.getSeconds() + seconds);
+    return date;
+}
 
 function PublicHandler () {
 	
@@ -12,7 +17,7 @@ function PublicHandler () {
 		
 		var forSearch = req.originalUrl.toString().split("/api/:id/search/")[1].split("_");
 		
-		console.log(req.session.yelpToken);
+		//console.log(req.session.yelpToken);
 		if(req.session.yelpToken === undefined){
 		request(process.env.APP_URL + 'api/:id/gettoken', function (error, response, body) {
 			if(error == null){
@@ -24,6 +29,9 @@ function PublicHandler () {
 					newYelp.token.access_token = mybody.jsonBody.access_token;
 					newYelp.token.token_type = mybody.jsonBody.token_type;
 					newYelp.token.expires_in = mybody.jsonBody.expires_in;
+					
+					newYelp.expire_date = addSeconds(mybody.jsonBody.expires_in);
+					newYelp.add_date = new Date;
 
 					newYelp.save(function (err) {
 						if (err) {
@@ -95,12 +103,18 @@ function PublicHandler () {
 			.findOne({ 'token.token_type': 'Bearer' }, { '_id': false })
 			.exec(function (err, result) {
 				if (err) { throw err; }
-				console.log(req.session);
-				req.session.yelpToken = result.token;
-				console.log(req.session);
-				//res.json(result.token);//Array
-				console.log('Saved in DB Token!');
-				res.send({"statusCode": 200,"headers":{},"body":{},'jsonBody':{'access_token':result.token.access_token,'token_type':result.token.token_type,'expires_in':result.token.expires_in}})
+				if (result){
+					var date = new Date;
+					if(result.expire_date > date){
+						req.session.yelpToken = result.token;
+						console.log('Saved in DB Token!');
+						res.send({"statusCode": 200,"headers":{},"body":{},'jsonBody':{'access_token':result.token.access_token,'token_type':result.token.token_type,'expires_in':result.token.expires_in}})
+					}else res.send({});
+					
+				}else{
+					res.send({});
+				}
+				
 			});
 	};
 	
