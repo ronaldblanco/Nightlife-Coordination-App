@@ -16,7 +16,7 @@
    function updateIamgoing (data) {
       //console.log(data);
       var myData = JSON.parse(data);
-      sResult.innerHTML = '';
+      sResult.innerHTML = '<h3>I am going to:</h3><br>';
       for(var a = 0; a < myData.businesses.length; a++){
          var category = '';
          for(var b = 0; b < myData.businesses[a].categories.length; b++) category = category + myData.businesses[a].categories[b].title + ', ';
