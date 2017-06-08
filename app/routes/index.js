@@ -79,6 +79,9 @@ module.exports = function (app, passport/*, token*/) {
 	app.route('/api/:id/searchiamgoing/*')
 		.get(isLoggedIn, publicHandler.setIamgoing)
 		
+	app.route('/api/:id/searchrmiamgoing')
+		.get(isLoggedIn, publicHandler.rmIamgoing)
+		
 	app.route('/api/:id/iamgoing')
 		.get(isLoggedIn, publicHandler.getIamgoing)
 		

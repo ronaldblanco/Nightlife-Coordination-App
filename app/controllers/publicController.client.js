@@ -5,6 +5,7 @@
    var location = document.querySelector('#loca');
    var term = document.querySelector('#term');
    var search = document.querySelector('#search');
+   var remove = document.querySelector('#remove');
    var sResult = document.querySelector('#sResult');
    var sResultProfile = document.querySelector('#sResultProfile');
    var apiUrl = appUrl + '/api/:id/search';
@@ -42,6 +43,14 @@
       
       
 
+   }, false);
+   
+   remove.addEventListener('click', function () {
+
+      ajaxFunctions.ajaxRequest('GET', apiUrl+'rmiamgoing', function(){
+         ajaxFunctions.ajaxRequest('GET', appUrl+'/api/:id/iamgoing', updateIamgoing);
+      });
+ 
    }, false);
 
    sResult.addEventListener('click', function () {

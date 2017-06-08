@@ -139,15 +139,27 @@ function PublicHandler () {
 			
 	};
 	
+	this.rmIamgoing = function (req, res) {
+		//console.log(req.originalUrl.toString().split("/add/")[1]);
+		//var idPhone = req.originalUrl.toString().split("/api/:id/searchiamgoing/")[1].split('_');
+		
+		Users
+			.findOneAndUpdate({ 'github.id': req.user.github.id }, { 'iamgoing.id':'','iamgoing.phone':'' })
+			.exec(function (err, result) {
+					if (err) { throw err; }
+
+					res.json(result.iamgoing);
+				}
+			);
+			
+	};
+	
 	this.getIamgoing = function (req, res) {
 		Users
 			.findOne({ 'github.id': req.user.github.id }, { '_id': false })
 			.exec(function (err, result) {
 				if (err) { throw err; }
-				//console.log(result.iamgoing.phone);
-				//result.polls.push("hola");
-				//res.json(result.iamgoing);//Array
-				
+				if(result && result.iamgoing.phone != ''){
 				const client = yelp.client(req.session.yelpToken.access_token);
  
 				client.phoneSearch({
@@ -158,6 +170,8 @@ function PublicHandler () {
 				}).catch(e => {
 					console.log(e);
 				});
+				
+				}else res.send({businesses:[]});
 				
 			});
 	};
