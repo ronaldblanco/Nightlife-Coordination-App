@@ -3,12 +3,30 @@
 <html>
 
 	<head>
-		<title>Clementine.js - The elegant and lightweight full stack JavaScript boilerplate.</title>
-		
-		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+		<script> 
+    $(function(){
+      $("#includedHead").load("/public/head.html"); 
+    });
+    </script> 
+    <script> 
+    $(function(){
+      $("#includedLogo").load("/public/logo.html"); 
+    });
+    </script> 
+    <script> 
+    $(function(){
+      $("#includedFoot").load("/public/foot.html"); 
+    });
+    </script> 
+    <div id="includedHead"></div>
 	</head>
 
 	<body>
+		<div class="container">
+			<div id="includedLogo"></div>
+			
+		</div>
 		<div class="container">
 			<div class="github-profile">
 				<img src="/public/img/gh-mark-32px.png" alt="github logo" />
@@ -30,6 +48,11 @@
 		
 		<script type="text/javascript" src="common/ajax-functions.js"></script>
 		<script type="text/javascript" src="controllers/userController.client.js"></script>
+		
+		<center>
+			<div id="includedFoot"></div>
+		</center>
+		
 	</body>
 
 </html>

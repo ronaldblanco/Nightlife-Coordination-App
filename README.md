@@ -1,3 +1,24 @@
+# Nightlife Coordination App using clementine.js FCC Boilerplate
+
+[![Join the chat at https://gitter.im/johnstonbl01/clementinejs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/johnstonbl01/clementinejs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+## Autor
+
+Created by Ronald Blanco.
+
+pnald.blanco@gmail.com<br>
+https://github.com/ronaldblanco<br>
+https://www.linkedin.com/in/ronald-blanco-carrazana-5b506268/<br>
+http://codepen.io/ronaldblanco/#<br>
+https://www.freecodecamp.com/ronaldblanco<br>
+
+## User Story
+
+As an unauthenticated user, I can view all bars in my area.<br>
+As an authenticated user, I can add myself to a bar to indicate I am going there tonight.<br>
+As an authenticated user, I can remove myself from a bar if I no longer want to go there.<br>
+As an unauthenticated user, when I login I should not have to search again.<br>
+
 # Clementine.js FCC Boilerplate
 
 [![Join the chat at https://gitter.im/johnstonbl01/clementinejs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/johnstonbl01/clementinejs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
