@@ -2,6 +2,7 @@
 
 (function () {
 
+   //var share = document.querySelector("#share");
    var location = document.querySelector('#loca');
    var term = document.querySelector('#term');
    var search = document.querySelector('#search');
@@ -17,19 +18,27 @@
       for(var a = 0; a < myData.businesses.length; a++){
          var category = '';
          for(var b = 0; b < myData.businesses[a].categories.length; b++) category = category + myData.businesses[a].categories[b].title + ', ';
-         if(myData.businesses[a].is_closed == false) sResult.innerHTML = sResult.innerHTML + '<li><input type="radio" value="' +myData.businesses[a].id+'_'+myData.businesses[a].phone+ '" name="radioBusi" id="radioBusi'+a+'">'+myData.businesses[a].name+'<img src='+myData.businesses[a].image_url+' class = "miniimg"><h>'+category+' Price: '+myData.businesses[a].price+'<br>OPEN NOW! Reviews: '+myData.businesses[a].review_count+', Rating: '+myData.businesses[a].rating+', Phone: '+myData.businesses[a].display_phone+'</h><br><h>'+myData.businesses[a].location.address1+' '+myData.businesses[a].location.address2+' '+myData.businesses[a].location.address3+' '+myData.businesses[a].location.city+' '+myData.businesses[a].location.state+' '+myData.businesses[a].location.zip_code+'</h></li><br>';
+         if(myData.businesses[a].is_closed == false) sResult.innerHTML = sResult.innerHTML + '<li class="list-group-item"><input type="radio" value="' +myData.businesses[a].id+'_'+myData.businesses[a].phone+ '" name="radioBusi" id="radioBusi'+a+'">'+myData.businesses[a].name+'<img src='+myData.businesses[a].image_url+' class = "miniimg img-rounded"><h>'+category+' Price: '+myData.businesses[a].price+'<br>OPEN NOW! Reviews: '+myData.businesses[a].review_count+', Rating: '+myData.businesses[a].rating+', Phone: '+myData.businesses[a].display_phone+'</h><br><h>'+myData.businesses[a].location.address1+' '+myData.businesses[a].location.address2+' '+myData.businesses[a].location.address3+' '+myData.businesses[a].location.city+' '+myData.businesses[a].location.state+' '+myData.businesses[a].location.zip_code+'</h></li><br>';
       }
    }
    
    function updateIamgoing (data) {
       //console.log(data);
       var myData = JSON.parse(data);
+      var urlDir = appUrl.toString().split('://')[1];
       sResultProfile.innerHTML = '<h3>I am going to:</h3><br>';
       for(var a = 0; a < myData.businesses.length; a++){
          var category = '';
          for(var b = 0; b < myData.businesses[a].categories.length; b++) category = category + myData.businesses[a].categories[b].title + ', ';
-         if(myData.businesses[a].is_closed == false) sResultProfile.innerHTML = sResultProfile.innerHTML + '<li>'+myData.businesses[a].name+'<img src='+myData.businesses[a].image_url+' class = "miniimg"><h>'+category+' Price: '+myData.businesses[a].price+'<br>OPEN NOW! Reviews: '+myData.businesses[a].review_count+', Rating: '+myData.businesses[a].rating+', Phone: '+myData.businesses[a].display_phone+'</h><br><h>'+myData.businesses[a].location.address1+' '+myData.businesses[a].location.address2+' '+myData.businesses[a].location.address3+' '+myData.businesses[a].location.city+' '+myData.businesses[a].location.state+' '+myData.businesses[a].location.zip_code+'</h></li><br>';
+         if(myData.businesses[a].is_closed == false){
+            sResultProfile.innerHTML = sResultProfile.innerHTML + '<li class="list-group-item">'+myData.businesses[a].name+'<img src='+myData.businesses[a].image_url+' class = "miniimg img-rounded"><h>'+category+' Price: '+myData.businesses[a].price+'<br>OPEN NOW! Reviews: '+myData.businesses[a].review_count+', Rating: '+myData.businesses[a].rating+', Phone: '+myData.businesses[a].display_phone+'</h><br><h>'+myData.businesses[a].location.address1+' '+myData.businesses[a].location.address2+' '+myData.businesses[a].location.address3+' '+myData.businesses[a].location.city+' '+myData.businesses[a].location.state+' '+myData.businesses[a].location.zip_code+'</h></li><br>';
+            var messageText = "I%20Am%20going%20to:%20"+myData.businesses[a].name+"%20Address:%20"+myData.businesses[a].location.address1+' '+myData.businesses[a].location.address2+' '+myData.businesses[a].location.address3+' '+myData.businesses[a].location.city+' '+myData.businesses[a].location.state+' '+myData.businesses[a].location.zip_code+"%20and%20Phone:%20"+myData.businesses[a].display_phone+".";
+            sResultProfile.innerHTML = sResultProfile.innerHTML + '<a href="https://twitter.com/intent/tweet?url=https%3A%2F%2F'+urlDir+'&amp;text='+messageText+'" class="btn btn-block shareit-twitter-colors tw-share"><i class="fa fa-twitter"></i> Twitter</a>';
+            sResultProfile.innerHTML = sResultProfile.innerHTML + '<a href="https://plus.google.com/share?url=https%3A%2F%2F'+urlDir+'&amp;text='+messageText+'" class="btn btn-block shareit-google-plus-colors tw-share"><i class="fa fa-google-plus"></i> Google+</a>';
+         } 
       }
+         
+      
    }
 
    ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl+'get', updateSearch));

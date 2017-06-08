@@ -34,6 +34,8 @@
 			<div id="includedLogo"></div>
 			
 		</div>
+		
+		<div class="container">	
 	
 		<!--<div class="container">
 			<p>You have clicked the button <span id="click-nbr"></span> times.</p>
@@ -45,17 +47,29 @@
 		</div>-->
 		
 		<br><br>
-			Location:<input type="text" name="loca" id="loca"><br>
-			Term:<input type="text" name="term" id="term"><br>
-              <button type="submit" class="btn btn-add" id ="search">Search!</button>
+		
+			<div class="form-group">
+		<label for="location">Location:</label>
+  <input type="text" class="form-control glyphicon" name="loca" id="loca" placeholder="City">
+</div>
+<div class="form-group">
+	  <label for="term">Termination To Search:</label>
+  <input type="text" class="form-control glyphicon" name="term" id="term" placeholder="Ex. Restaurant or Bar">
+</div> 
+
+              <button type="submit" class="btn btn-default" id ="search">Search!</button>
               <br>
-              <ul id="sResultProfile">
+              <ul class="list-group" id="sResultProfile">
               	</ul>
-              	<button class="btn btn-delete" id="remove">Remove Selection</button>
+              	
+              	<!--<div class="container" id = "share"></div>-->
+              	
+              	<button class="btn btn-danger" id="remove">Remove</button>
               	<br>
-              <ul id="sResult">
+              <ul class="list-group" id="sResult">
               	</ul>
 		
+		</div>
 		<script type="text/javascript" src="common/ajax-functions.js"></script>
 		<script type="text/javascript" src="controllers/publicController.client.js"></script>
 		<script type="text/javascript" src="controllers/userController.client.js"></script>

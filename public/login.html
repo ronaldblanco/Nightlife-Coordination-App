@@ -40,10 +40,26 @@
 			</div>
 			
 			<br><br>
-			Location:<input type="text" name="loca" id="loca"><br>
-			Term:<input type="text" name="term" id="term"><br>
-              <button type="submit" class="btn btn-add" id ="search">Search!</button>
-              <ul id="sResult">
+			
+			 <div class="form-group">
+		<label for="location">Location:</label>
+  <input type="text" class="form-control glyphicon" name="loca" id="loca" placeholder="City">
+</div>
+<div class="form-group">
+	  <label for="term">Termination To Search:</label>
+  <input type="text" class="form-control glyphicon" name="term" id="term" placeholder="Ex. Restaurant or Bar">
+</div> 
+
+ <!--<div class="input-group">
+    <span class="input-group-addon">TEST</span>
+    <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+  </div>-->
+
+			<!--Location:<input type="text" name="loca" id="loca"><br>
+			Term:<input type="text" name="term" id="term"><br>-->
+			
+              <button type="submit" class="btn btn-default" id ="search">Search!</button>
+              <ul class="list-group" id="sResult">
               	</ul>
               	
 		</div>
