@@ -121,7 +121,29 @@ function PublicHandler () {
 	this.getSearch = function (req, res) {
 		if(req.session.mySearch != undefined){
 			res.send(req.session.mySearch);
-		}else res.send({'businesses':[]});
+		}else{
+			
+			/*Yelp
+			.findOne({ 'token.token_type': 'Bearer' }, { '_id': false })
+			.exec(function (err, result) {
+				if (err) { throw err; }
+				if (result){
+					var date = new Date;
+					if(result.expire_date > date){
+						req.session.yelpToken = result.token;
+						//req.session.mySearch = {'businesses':[]};
+						console.log(req.session);
+						console.log('Saved in DB Token NO SEARCH!');
+						//res.send({"statusCode": 200,"headers":{},"body":{},'jsonBody':{'access_token':result.token.access_token,'token_type':result.token.token_type,'expires_in':result.token.expires_in}})
+					}
+					
+				}
+				
+			});*/
+			
+			
+			res.send({'businesses':[]});
+		} 
 	};
 	
 	this.setIamgoing = function (req, res) {
@@ -159,6 +181,7 @@ function PublicHandler () {
 			.findOne({ 'github.id': req.user.github.id }, { '_id': false })
 			.exec(function (err, result) {
 				if (err) { throw err; }
+				//console.log(req.session);
 				if(result && result.iamgoing.phone != ''){
 				const client = yelp.client(req.session.yelpToken.access_token);
  

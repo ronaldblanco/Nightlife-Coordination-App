@@ -2,7 +2,7 @@
 
 (function () {
 
-   //var share = document.querySelector("#share");
+   var login = document.querySelector("#login");
    var location = document.querySelector('#loca');
    var term = document.querySelector('#term');
    var search = document.querySelector('#search');
@@ -14,6 +14,7 @@
    function updateSearch (data) {
       //console.log(data);
       var myData = JSON.parse(data);
+      if(myData.businesses.length > 0 && login !== null) login.innerHTML = 'YOU NEED TO LOGIN IN ORDER TO SELECT A PLACE!<br><a href="/auth/github">					<div class="btn" id="login-btn">						<img src="/public/img/github_32px.png" alt="github logo" />						<p>LOGIN WITH GITHUB</p>					</div>				</a>';
       sResult.innerHTML = '<h3>Select a place to go:</h3><br>';
       for(var a = 0; a < myData.businesses.length; a++){
          var category = '';
@@ -24,6 +25,7 @@
    
    function updateIamgoing (data) {
       //console.log(data);
+      //
       var myData = JSON.parse(data);
       var urlDir = appUrl.toString().split('://')[1];
       sResultProfile.innerHTML = '<h3>I am going to:</h3><br>';
@@ -65,7 +67,7 @@
    sResult.addEventListener('click', function () {
 
       var idPhone = document.querySelector('input[name = "radioBusi"]:checked').value;
-      
+      //document.querySelector("#login").innerHTML = 'YOU NEED TO LOGIN IN ORDER TO SELECT A PLACE!<br><a href="/auth/github">					<div class="btn" id="login-btn">						<img src="/public/img/github_32px.png" alt="github logo" />						<p>LOGIN WITH GITHUB</p>					</div>				</a>';
       ajaxFunctions.ajaxRequest('GET', apiUrl+'iamgoing/'+idPhone, function (){
          ajaxFunctions.ajaxRequest('GET', appUrl+'/api/:id/iamgoing', updateIamgoing);
          ajaxFunctions.ajaxRequest('GET', apiUrl+'get', updateSearch);
