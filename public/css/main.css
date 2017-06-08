@@ -105,9 +105,27 @@ img {
 }
 
 .miniimg {
-	width: 15%;
-	margin-left: 0%;
-	/*height: 15%*/
+	margin-left:2%;
+	/*float:left;*/ 
+	width: 30%;
+	height: auto
+}
+
+.textInfo {
+	margin-top: -7%;
+	margin-left:35%
+}
+
+.textRadio {
+	margin-bottom: -3%;
+	margin-left:35%
+}
+
+@media screen and (min-width: 768px) {
+
+.custom-collapse .collapse{
+            display:block;
+      }  
 }
 
 .clementine-text { /* Styling for the Clementine.js text */
