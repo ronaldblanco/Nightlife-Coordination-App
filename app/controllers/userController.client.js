@@ -4,9 +4,10 @@
 
    var profileId = document.querySelector('#profile-id') || null;
    var profileUsername = document.querySelector('#profile-username') || null;
-   var profileRepos = document.querySelector('#profile-repos') || null;
+   //var profileRepos = document.querySelector('#profile-repos') || null;
    var displayName = document.querySelector('#display-name');
    var sResultProfile = document.querySelector('#sResultProfile');
+   var others = document.querySelector('#others');
    var apiUrl = appUrl + '/api/:id';
 
    function updateHtmlElement (data, element, userProperty) {
@@ -32,6 +33,15 @@
          } 
       }
    }
+   
+   function updateOthers (data) {
+      console.log(data);
+      var myData = JSON.parse(data);
+      //var urlDir = appUrl.toString().split('://')[1];
+      if(myData.length > 0) others.innerHTML = '<h5>'+(myData.length + 1)+' other persons are going to that place also.</h5><br>';
+      else others.innerHTML = '<h5>It look you are the only person going to that place.</h5><br>';
+      
+   }
 
    ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, function (data) {
       var userObject = JSON.parse(data);
@@ -50,11 +60,12 @@
          updateHtmlElement(userObject, profileUsername, 'username');   
       }
 
-      if (profileRepos !== null) {
+      /*if (profileRepos !== null) {
          updateHtmlElement(userObject, profileRepos, 'publicRepos');   
-      }
+      }*/
       
       ajaxFunctions.ajaxRequest('GET', apiUrl+'/iamgoing', updateIamgoing);
+      ajaxFunctions.ajaxRequest('GET', apiUrl+'/iamgoingothers', updateOthers);
 
    }));
    

@@ -1,6 +1,7 @@
 'use strict';
 
 var Users = require('../models/users.js');
+var Users1 = require('../models/users.js');
 var Yelp = require('../models/yelps.js');
 const yelp = require('yelp-fusion');
 var request = require('request');
@@ -197,6 +198,44 @@ function PublicHandler () {
 				}else res.send({businesses:[]});
 				
 			});
+	};
+	
+	this.getOthersIamgoing = function (req, res) {
+		//var phone = undefined;
+		Users
+			.findOne({ 'github.id': req.user.github.id }, { '_id': false })
+			.exec(function (err, result) {
+				if (err) { throw err; }
+				//console.log(req.session);
+				if(result && result.iamgoing.phone != ''){
+				
+				
+				
+		Users1
+			.find({ 'iamgoing.phone': result.iamgoing.phone }, {})
+			.exec(function (err1, result1) {
+				if (err1) { throw err1; }
+				//console.log(result1);
+				if(result1){
+					
+					var final = [];
+					for(var a = 0; a < result1.length; a++){
+						if(result1[a].github.id != req.user.github.id) final.push(result1[a]);
+					}
+				
+					res.send(final);
+				
+				}else res.send([]);
+				
+			});
+				
+					
+					
+				}else res.send([]); 
+				
+			});
+			
+
 	};
 
 }
