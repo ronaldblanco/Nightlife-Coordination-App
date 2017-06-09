@@ -152,7 +152,7 @@ function PublicHandler () {
 		var idPhone = req.originalUrl.toString().split("/api/:id/searchiamgoing/")[1].split('_');
 		
 		Users
-			.findOneAndUpdate({ 'twitter.id': req.user.twitter.id }, { 'iamgoing.id':idPhone[0],'iamgoing.phone':idPhone[1] })
+			.findOneAndUpdate({ 'github.id': req.user.github.id }, { 'iamgoing.id':idPhone[0],'iamgoing.phone':idPhone[1] })
 			.exec(function (err, result) {
 					if (err) { throw err; }
 
@@ -167,7 +167,7 @@ function PublicHandler () {
 		//var idPhone = req.originalUrl.toString().split("/api/:id/searchiamgoing/")[1].split('_');
 		
 		Users
-			.findOneAndUpdate({ 'twitter.id': req.user.twitter.id }, { 'iamgoing.id':'','iamgoing.phone':'' })
+			.findOneAndUpdate({ 'github.id': req.user.github.id }, { 'iamgoing.id':'','iamgoing.phone':'' })
 			.exec(function (err, result) {
 					if (err) { throw err; }
 
@@ -179,7 +179,7 @@ function PublicHandler () {
 	
 	this.getIamgoing = function (req, res) {
 		Users
-			.findOne({ 'twitter.id': req.user.twitter.id }, { '_id': false })
+			.findOne({ 'github.id': req.user.github.id }, { '_id': false })
 			.exec(function (err, result) {
 				if (err) { throw err; }
 				//console.log(req.session);
@@ -203,7 +203,7 @@ function PublicHandler () {
 	this.getOthersIamgoing = function (req, res) {
 		//var phone = undefined;
 		Users
-			.findOne({ 'twitter.id': req.user.twitter.id }, { '_id': false })
+			.findOne({ 'github.id': req.user.github.id }, { '_id': false })
 			.exec(function (err, result) {
 				if (err) { throw err; }
 				//console.log(req.session);
@@ -220,7 +220,7 @@ function PublicHandler () {
 					
 					var final = [];
 					for(var a = 0; a < result1.length; a++){
-						if(result1[a].twitter.id != req.user.twitter.id) final.push(result1[a]);
+						if(result1[a].github.id != req.user.github.id) final.push(result1[a]);
 					}
 				
 					res.send(final);

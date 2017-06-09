@@ -10,5 +10,10 @@ module.exports = {
 		'clientID': process.env.YELP_KEY,
 		'clientSecret': process.env.YELP_SECRET,
 		'tokenUrl': process.env.YELP_URL_TOKEN
+	},
+	'twitterAuth': {
+		'clientID': process.env.TWITTER_KEY,
+		'clientSecret': process.env.TWITTER_SECRET,
+		'callbackURL': process.env.APP_URL + 'auth/twitter/callback'
 	}
 };

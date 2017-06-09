@@ -25,7 +25,8 @@
    function updateSearch (data) {
       //console.log(data);
       var myData = JSON.parse(data);
-      if(myData.businesses.length > 0 && login !== null) login.innerHTML = 'YOU NEED TO LOGIN IN ORDER TO SELECT A PLACE!<br><a href="/auth/github">					<div class="btn" id="login-btn">						<img src="/public/img/github_32px.png" alt="github logo" />						<p>LOGIN WITH GITHUB</p>					</div>				</a><br>';
+      //if(myData.businesses.length > 0 && login !== null) login.innerHTML = 'YOU NEED TO LOGIN IN ORDER TO SELECT A PLACE!<br><a href="/auth/github">					<div class="btn" id="login-btn">						<img src="/public/img/github_32px.png" alt="github logo" />						<p>LOGIN WITH GITHUB</p>					</div>				</a><br>';
+      if(myData.businesses.length > 0 && login !== null) login.innerHTML = 'YOU NEED TO LOGIN IN ORDER TO SELECT A PLACE!<br><a href="/auth/twitter">					<div class="btn" id="login-btn">						<img src="/public/img/twitter_32.png" alt="github logo" />						<p>LOGIN WITH TWITTER</p>					</div>				</a><br>';
       if(myData.businesses.length > 0) sResult.innerHTML = '<h3>Select a place to go:</h3><br>';
       else sResult.innerHTML = '';
       for(var a = 0; a < myData.businesses.length; a++){
